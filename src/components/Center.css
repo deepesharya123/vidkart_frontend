@@ -1,0 +1,9 @@
+.center {
+  position: absolute;
+  width: 1481px;
+  height: 512px;
+  left: 175px;
+  top: 123px;
+  background: #c1dcdc;
+  border-radius: 24px;
+}

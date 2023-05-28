@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 95px;
+
+  position: absolute;
+  width: 315px;
+  height: 27px;
+  left: 175px;
+  top: 48px;
+}
+
+.right_nav {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 48px;
+
+  position: absolute;
+  width: 216px;
+  height: 24px;
+  left: 1440px;
+  top: 48px;
+}
