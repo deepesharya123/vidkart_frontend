@@ -1,13 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/Header";
-import Center from "./components/Center";
+import Banner from "./components/Banner";
 
 function App() {
   return (
     <div className="">
       <Header />
-      <Center />
+      <Banner />
     </div>
   );
 }

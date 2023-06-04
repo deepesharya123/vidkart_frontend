@@ -30,3 +30,19 @@ ul {
   left: 1440px;
   top: 48px;
 }
+
+.title {
+  width: 146px;
+  height: 29px;
+
+  font-family: "Aleo";
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+
+  /* Color 2 */
+
+  color: #1e1e1e;
+}
