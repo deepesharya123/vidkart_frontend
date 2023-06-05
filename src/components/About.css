@@ -1,0 +1,96 @@
+.about {
+  position: relative;
+
+  margin-left: 10%;
+  width: 80%;
+  background: #ffffff;
+}
+
+.about_us {
+  position: relative;
+  height: 48px;
+
+  margin-top: 100px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+
+  color: #1e1e1e;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.about_info {
+  position: relative;
+  text-align: center;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: rgba(30, 30, 30, 0.5);
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.about_details {
+  position: relative;
+  /* margin-left: 175px; */
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+
+  gap: 24px;
+
+  /* width: 1248px; */
+  height: 213px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.image_heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  height: 147px;
+}
+
+.heading_about {
+  /* text-align: center; */
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.description {
+  position: relative;
+  height: 54px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+  color: rgba(30, 30, 30, 0.5);
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}

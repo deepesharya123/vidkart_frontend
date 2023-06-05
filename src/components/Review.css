@@ -1,0 +1,77 @@
+.review_question {
+  position: relative;
+  width: 80%;
+  margin-left: 10%;
+  text-align: center;
+  height: 96px;
+  font-family: "Poppins";
+  font-style: normal;
+  margin-top: 64px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.reviews {
+  position: relative;
+  position: relative;
+  display: flex;
+  gap: 48px;
+  width: 80%;
+  margin-left: 10%;
+  flex-direction: row;
+}
+
+.review_head {
+  margin-bottom: 150px;
+}
+
+.envelop {
+  position: relative;
+  border-radius: 12px;
+  background: #c1dcdc;
+  width: 50%;
+}
+
+.review_message {
+  position: relative;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: rgba(30, 30, 30, 0.75);
+
+  padding: 48px 48px 0px;
+}
+
+.review_cover {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.review_name {
+  position: relative;
+  padding-top: 54px;
+}
+
+.photo {
+}
+
+.rating {
+  position: relative;
+  padding-top: 54px;
+  right: 208px;
+}
+
+.star {
+  position: relative;
+  padding-left: 651px;
+  width: 20px;
+  height: 20px;
+  padding-top: 54px;
+  right: 225px;
+}
