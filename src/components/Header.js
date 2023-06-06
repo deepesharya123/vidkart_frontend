@@ -16,8 +16,29 @@ function Header() {
             <li className="home">Home</li>
             <li className="products">Products</li>
             <li className="contacts">Contacts</li>
-            <li className="register">Register</li>
-            <li className="login">Login</li>
+
+            <div class="dropdown_head">
+              <div class="register">Register</div>
+              <div class="dropdown_content">
+                <div href="#" className="seller">
+                  Seller
+                </div>
+                <div href="#" className="customer">
+                  Customer
+                </div>
+              </div>
+            </div>
+            <div class="dropdown_head">
+              <div class="login">Login</div>
+              <div class="dropdown_content">
+                <div href="#" className="seller">
+                  Seller
+                </div>
+                <div href="#" className="customer">
+                  Customer
+                </div>
+              </div>
+            </div>
           </ul>
           <ul className="right_nav">
             <li className="cart">

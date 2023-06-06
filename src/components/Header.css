@@ -58,5 +58,44 @@ ul {
   border-radius: 5px;
 }
 
-li {
+.register,
+.login {
+  text-decoration: none;
+  width: 100%;
+}
+
+.dropdown_head {
+  position: relative;
+  display: none;
+  display: inline-block;
+}
+
+.dropdown_content {
+  position: absolute;
+  display: none;
+  width: 100%;
+}
+
+.register:hover {
+  position: relative;
+  display: block;
+}
+
+.dropdown_content a:hover {
+  position: relative;
+}
+
+.dropdown_head:hover .dropdown_content {
+  display: block;
+  z-index: 1;
+}
+
+.seller,
+.customer {
+  position: relative;
+  padding: 20px;
+  background-color: black;
+  border-radius: 4px;
+  width: inherit;
+  color: white;
 }
