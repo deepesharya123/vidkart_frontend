@@ -1,7 +1,5 @@
 ul {
   list-style-type: none;
-  /* Auto layout */
-
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -16,14 +14,11 @@ ul {
 }
 
 .right_nav {
-  /* Auto layout */
-
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 48px;
-
   position: absolute;
   width: 216px;
   height: 24px;
@@ -34,21 +29,19 @@ ul {
 .title {
   width: 146px;
   height: 29px;
-
   font-family: "Aleo";
   font-style: normal;
   font-weight: 1000;
   font-size: 24px;
   line-height: 29px;
-  /* identical to box height */
-
-  /* Color 2 */
-
   color: #1e1e1e;
 }
+
 .home,
 .products,
-.contacts {
+.contacts,
+.register,
+.login {
   position: relative;
   background: linear-gradient(to left, white 50%, #c1dcdc 50%) right;
   background-size: 200%;
@@ -57,8 +50,13 @@ ul {
 
 .home:hover,
 .products:hover,
-.contacts:hover {
+.contacts:hover,
+.register:hover,
+.login:hover {
   background-position: left;
   padding: 20px;
   border-radius: 5px;
+}
+
+li {
 }

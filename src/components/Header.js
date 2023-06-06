@@ -16,6 +16,8 @@ function Header() {
             <li className="home">Home</li>
             <li className="products">Products</li>
             <li className="contacts">Contacts</li>
+            <li className="register">Register</li>
+            <li className="login">Login</li>
           </ul>
           <ul className="right_nav">
             <li className="cart">
