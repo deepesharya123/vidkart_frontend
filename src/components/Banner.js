@@ -15,7 +15,7 @@ function Banner() {
       </div>
 
       <div className="info">
-        <div className="left">
+        <div className="left_info">
           <div className="info_left_top">5+</div>
           <div className="info_left_bottom">UseFull Items</div>
         </div>

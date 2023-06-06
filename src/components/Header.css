@@ -46,3 +46,19 @@ ul {
 
   color: #1e1e1e;
 }
+.home,
+.products,
+.contacts {
+  position: relative;
+  background: linear-gradient(to left, white 50%, #c1dcdc 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+}
+
+.home:hover,
+.products:hover,
+.contacts:hover {
+  background-position: left;
+  padding: 20px;
+  border-radius: 5px;
+}
