@@ -1,16 +1,18 @@
 ul {
+  position: relative;
   list-style-type: none;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 95px;
-
   position: absolute;
   width: 315px;
   height: 27px;
   left: 175px;
   top: 48px;
+}
+
+.home {
 }
 
 .right_nav {
@@ -27,8 +29,6 @@ ul {
 }
 
 .title {
-  width: 146px;
-  height: 29px;
   font-family: "Aleo";
   font-style: normal;
   font-weight: 1000;
@@ -46,6 +46,7 @@ ul {
   background: linear-gradient(to left, white 50%, #c1dcdc 50%) right;
   background-size: 200%;
   transition: 0.5s ease-out;
+  margin-left: 100px;
 }
 
 .home:hover,
@@ -61,7 +62,7 @@ ul {
 .register,
 .login {
   text-decoration: none;
-  width: 100%;
+  width: 83px;
 }
 
 .dropdown_head {
@@ -73,12 +74,12 @@ ul {
 .dropdown_content {
   position: absolute;
   display: none;
-  width: 100%;
 }
 
 .register:hover {
   position: relative;
   display: block;
+  justify-content: center;
 }
 
 .dropdown_content a:hover {
@@ -98,4 +99,5 @@ ul {
   border-radius: 4px;
   width: inherit;
   color: white;
+  margin-left: 100px;
 }

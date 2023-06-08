@@ -7,7 +7,7 @@ import Review from "./Review";
 import Footer from "./Footer";
 import DemoProducts from "./DemoProducts";
 
-function Dashboard() {
+function Home() {
   return (
     <div>
       <Header />
@@ -20,4 +20,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Home;
