@@ -6,15 +6,6 @@ import axios from "axios";
 const ShowProduct = (props) => {
   const { category, description, id, image, price, rating, title } = props;
 
-  console.log({
-    category,
-    description,
-    id,
-    image,
-    price,
-    rating,
-    title,
-  });
   return (
     <div className="demo_product">
       <img src={image} className="image_demo" />
@@ -36,16 +27,16 @@ function DemoProducts() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log("inside useEffect");
     const getData = async () => {
       await axios
+        // .get("https://dummyjson.com/products")
         .get("https://fakestoreapi.com/products/category/electronics?limit=5")
         .then((res) => {
-          console.log("res", res.data);
           setData(res.data);
+          // setData(res.data.products.slice(0, 5));
         })
         .catch((err) => {
-          console.log(err);
+          console.log("SF", err);
         });
     };
     getData();

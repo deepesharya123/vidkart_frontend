@@ -7,19 +7,19 @@ import Person from "../images/Person.png";
 import Line from "../images/Line 1.png";
 import Vector from "../images/Vector.png";
 
-const RegisterComponent = () => {
+const SellerComponent = () => {
   return (
-    <div class="dropdown_head">
-      <div class="register">Register</div>
-      <div class="dropdown_content">
-        <NavLink to="/register/seller">
+    <div className="dropdown_head">
+      <div className="register">Seller</div>
+      <div className="dropdown_content">
+        <NavLink to="/seller/register">
           <div href="#" className="seller">
-            Seller
+            Register
           </div>
         </NavLink>
-        <NavLink to="/register/customer">
+        <NavLink to="/seller/login">
           <div href="#" className="customer">
-            Customer
+            Log in
           </div>
         </NavLink>
       </div>
@@ -27,20 +27,19 @@ const RegisterComponent = () => {
   );
 };
 
-const LoginComponent = () => {
-  console.log("Login");
+const CustomerComponent = () => {
   return (
-    <div class="dropdown_head">
-      <div class="login">Login</div>
-      <div class="dropdown_content">
-        <NavLink to="/login/seller">
+    <div className="dropdown_head">
+      <div className="login">Customer</div>
+      <div className="dropdown_content">
+        <NavLink to="/customer/register">
           <div href="#" className="seller">
-            Seller
+            Register
           </div>
         </NavLink>
-        <NavLink to="/login/customer">
+        <NavLink to="/customer/login">
           <div href="#" className="customer">
-            Customer
+            Login
           </div>
         </NavLink>
       </div>
@@ -58,10 +57,9 @@ function Header() {
             <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
               <li className="home">Home</li>
             </NavLink>
-            <li className="products">Products</li>
             <li className="contacts">Contacts</li>
-            <RegisterComponent />
-            <LoginComponent />
+            <CustomerComponent />
+            <SellerComponent />
           </ul>
           <ul className="right_nav">
             <li className="cart">

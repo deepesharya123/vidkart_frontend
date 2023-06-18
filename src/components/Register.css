@@ -56,7 +56,8 @@
 
 .register_name,
 .email,
-.password {
+.password,
+.phonenumber {
   position: relative;
   border: none;
   border-bottom: 2px solid #c1dcdc;

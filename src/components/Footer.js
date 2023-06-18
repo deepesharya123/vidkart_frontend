@@ -22,26 +22,28 @@ function Footer() {
 
         <div className="right_footer">
           <table>
-            <tr>
-              <th>Information</th>
-              <th>Company</th>
-              <th>Contact</th>
-            </tr>
-            <tr>
-              <td>About</td>
-              <td>Community</td>
-              <td>Getting Started</td>
-            </tr>
-            <tr>
-              <td>Product</td>
-              <td>Career</td>
-              <td>Pricing</td>
-            </tr>
-            <tr>
-              <td>Blog</td>
-              <td>Our Story</td>
-              <td>Resources</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Information</th>
+                <th>Company</th>
+                <th>Contact</th>
+              </tr>
+              <tr>
+                <td>About</td>
+                <td>Community</td>
+                <td>Getting Started</td>
+              </tr>
+              <tr>
+                <td>Product</td>
+                <td>Career</td>
+                <td>Pricing</td>
+              </tr>
+              <tr>
+                <td>Blog</td>
+                <td>Our Story</td>
+                <td>Resources</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

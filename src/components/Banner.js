@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import "./Banner.css";
 import Line from "../images/Line 2.png";
@@ -7,7 +8,42 @@ import Arrow1 from "../images/arrow_1_Vector 186.png";
 import Arrow2 from "../images/arrow_2_Vector 187.png";
 import Hand from "../images/hand.png";
 
+const backend = "http://localhost:8080";
+
 function Banner() {
+  const [searchedProduct, SetSearchedProduct] = useState([{}]);
+  const [search, SetSearch] = useState("");
+
+  useEffect(() => {
+    // const getData = async () => {
+    //   await axios
+    //     .get(`${backend}/demo`)
+    //     .then((res) => {
+    //       console.log("response form backend is", res);
+    //     })
+    //     .catch((err) => console.log(err));
+    // };
+  }, [search]);
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    SetSearch(value);
+  };
+
+  const searchProduct = async () => {
+    console.log("i am searching the product", search);
+    const getData = async () => {
+      await axios
+        .get(`${backend}/customer/product/${search}`)
+        .then((res) => {
+          console.log("response form backend is", res);
+        })
+        .catch((err) => console.log(err));
+    };
+    if (search.length > 0) getData();
+    else alert("Please search valid product");
+  };
+
   return (
     <div>
       <div className="banner">
@@ -28,15 +64,17 @@ function Banner() {
         </div>
       </div>
 
-      <div className="search">
+      <div className="search" onChange={handleSearch}>
         <input
           className="product_search"
           type="text"
+          value={search}
+          name="search"
           placeholder="What are you looking for?"
         />
-        <div className="search_icon">
+        <button className="search_icon" onClick={searchProduct}>
           <img src={Search} className="search_icon_2" />
-        </div>
+        </button>
       </div>
 
       <img src={Arrow1} className="arrow_1" />
