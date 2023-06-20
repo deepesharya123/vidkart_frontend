@@ -6,7 +6,6 @@ import LoginPage from "./LoginPage";
 
 function ActionSeller() {
   const action = useParams().action;
-  console.log("action", action);
   return (
     <div>
       {action == "register" ? (

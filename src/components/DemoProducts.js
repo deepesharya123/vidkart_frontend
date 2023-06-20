@@ -36,7 +36,7 @@ function DemoProducts() {
           // setData(res.data.products.slice(0, 5));
         })
         .catch((err) => {
-          console.log("SF", err);
+          console.log("error from fetching product", err);
         });
     };
     getData();

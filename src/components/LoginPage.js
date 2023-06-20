@@ -13,8 +13,6 @@ function LoginPage(props) {
   const { user } = props;
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
-  console.log("user from login page is", user);
-
   const navigate = useNavigate();
 
   const [formData, SetFormData] = useState({
@@ -24,11 +22,9 @@ function LoginPage(props) {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    console.log("login handlechange data", { name, value });
     SetFormData((prevData) => {
       return { ...prevData, [name]: value };
     });
-    console.log(formData);
   };
 
   const handleSubmit = (e) => {

@@ -18,7 +18,7 @@ const Header = (props) => {
   const location = useLocation();
   const userDetails = location.state;
   const navigate = useNavigate();
-
+  console.log("userdetails sending to lotoug", userDetails);
   const handleSearch = (e) => {
     const { value } = e.target;
     SetSearch(value);
@@ -45,9 +45,9 @@ const Header = (props) => {
           `${backend}/${user === "seller" ? "users" : "customer"}/logout`,
           userDetails,
           {
-            credentials: "include",
             withCredentials: true,
-            headers: { "Content-Type": "multipart/form-data" },
+            // credentials: "include",
+            // headers: { "Content-Type": "multipart/form-data" },
           }
         )
         .then((res) => {
