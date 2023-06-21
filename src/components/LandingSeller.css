@@ -167,6 +167,7 @@
 }
 
 .upload_section {
+  display: flex;
   position: absolute;
   background-color: #c1dcdc;
   width: 86%;
@@ -197,4 +198,34 @@
 
 .file_upload {
   width: 50%;
+}
+
+.previous_items_list {
+  position: absolute;
+  margin: 764px 7% 0px;
+  border-radius: 12px;
+  width: 86%;
+  background-color: #c1dcdc;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previous_item {
+  position: relative;
+  background-color: #fff;
+  width: 47%;
+  margin: 20px;
+  border-radius: 6px;
+  display: flex;
+}
+
+.item_image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+}
+
+.item_info {
+  margin-top: 20px;
 }
