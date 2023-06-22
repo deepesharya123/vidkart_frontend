@@ -1,5 +1,5 @@
 .header_land {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: row;
   background-color: #c1dcdc;
@@ -98,8 +98,8 @@
 }
 
 .square_container {
-  position: absolute;
-  margin-top: 92px;
+  position: relative;
+  margin-top: 32px;
   background-color: #c1dcdc;
   display: flex;
   width: 86%;
@@ -168,10 +168,10 @@
 
 .upload_section {
   display: flex;
-  position: absolute;
+  position: relative;
   background-color: #c1dcdc;
   width: 86%;
-  margin: 336px 7% 0px;
+  margin: 32px 7% 0px;
   border-radius: 12px;
 }
 
@@ -201,8 +201,8 @@
 }
 
 .previous_items_list {
-  position: absolute;
-  margin: 764px 7% 0px;
+  position: relative;
+  margin: 32px 7% 0px;
   border-radius: 12px;
   width: 86%;
   background-color: #c1dcdc;
@@ -228,4 +228,51 @@
 
 .item_info {
   margin-top: 20px;
+}
+.delete_item {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  color: black;
+  background-color: #c1dcdc;
+}
+.searched_product_land {
+  position: absolute;
+  margin: 32px 7% 0px;
+}
+.searched_image_seller_land {
+  border-radius: 12px;
+  width: 200px;
+  height: 220px;
+}
+
+.display_items_container_seller_land {
+  position: relative;
+  padding: 100px;
+  display: flex;
+}
+
+.show_product_seller_land {
+  margin: 0px 100px 0px;
+  background-color: #c1dcdc;
+  padding: 20px;
+  border-radius: 12px;
+  width: 64%;
+}
+
+.mr_seller_land {
+  margin-top: 20px;
+}
+
+.add_to_cart_search_seller_land {
+  width: 245px;
+  height: 35px;
+  left: 72px;
+
+  background: black;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  margin: 20px 0px 20px;
 }

@@ -7,23 +7,13 @@ import Search from "../images/Search.png";
 import Arrow1 from "../images/arrow_1_Vector 186.png";
 import Arrow2 from "../images/arrow_2_Vector 187.png";
 import Hand from "../images/hand.png";
+import SearchedProduct from "./SearchedProduct";
 
 const backend = "http://localhost:8080";
 
 function Banner() {
-  const [searchedProduct, SetSearchedProduct] = useState([{}]);
+  const [searchedProduct, setSearchedProduct] = useState([]);
   const [search, SetSearch] = useState("");
-
-  useEffect(() => {
-    // const getData = async () => {
-    //   await axios
-    //     .get(`${backend}/demo`)
-    //     .then((res) => {
-    //       console.log("response form backend is", res);
-    //     })
-    //     .catch((err) => console.log(err));
-    // };
-  }, [search]);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -36,6 +26,7 @@ function Banner() {
       await axios
         .get(`${backend}/customer/product/${search}`)
         .then((res) => {
+          setSearchedProduct(res.data.items);
           console.log("response form backend is", res);
         })
         .catch((err) => console.log(err));
@@ -83,6 +74,9 @@ function Banner() {
         <img src={Hand} className="hand" />
       </div>
       <img src={Arrow2} className="arrow_2" />
+      {searchedProduct.length > 0 && (
+        <SearchedProduct searchedProduct={searchedProduct} />
+      )}
     </div>
   );
 }

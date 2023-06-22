@@ -11,22 +11,24 @@ import Sold from "../images/sold.png";
 import Customer from "../images/customer.png";
 import PreviousItem from "../images/previous_item.png";
 import { useCookies } from "react-cookie";
+import SearchedProduct from "./SearchedProduct";
 const backend = "http://localhost:8080";
 
 const Header = (props) => {
-  const { user } = props;
+  const { user, setSearchData } = props;
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
   const location = useLocation();
   const userData = location.state;
   const [userDetails, setUserDetails] = useState(userData);
   const navigate = useNavigate();
+  const [foundSearchProduct, setFoundSearchProduct] = useState(false);
+  const [searchedProduct, setSearchedProduct] = useState([]);
 
   useEffect(() => {
     setUserDetails(!userDetails ? userData : userDetails);
   }, []);
 
-  console.log("userDetails ,", userDetails);
   const handleSearch = (e) => {
     const { value } = e.target;
     SetSearch(value);
@@ -37,9 +39,12 @@ const Header = (props) => {
       await axios
         .get(`${backend}/customer/product/${search}`)
         .then((res) => {
-          console.log("response form seller  is", res);
+          // setSearchedProduct(res.data.items);
+          setSearchData(res.data.items);
+          console.log("response form backend is", res);
         })
         .catch((err) => console.log(err));
+      setFoundSearchProduct(true);
     };
     if (search.length > 0) getData();
     else alert("Please search valid product");
@@ -117,8 +122,6 @@ const Squareinfo = (props) => {
   const handlePreviousItems = () => {
     console.log("See Previous Items");
     const getPreviousItems = async () => {
-      // const token = cookies.auth_token;
-      // console.log("token is ", token);
       await axios
         .post(`${backend}/users/previousItem`, { token: cookies.auth_token })
         .then((res) => {
@@ -283,9 +286,36 @@ const UploadItem = (props) => {
 };
 
 const ShowItems = (props) => {
-  const { college, description, imagePath, owner, phoneNumber, price, title } =
-    props.item;
-  console.log({ item: props.item });
+  const {
+    college,
+    description,
+    imagePath,
+    owner,
+    phoneNumber,
+    price,
+    title,
+    _id,
+  } = props.item;
+
+  const [cookie, setCookie] = useCookies();
+
+  const handleItemDelete = (id) => {
+    // e.preventDefault();
+    const token = cookie.auth_token;
+    const formData = { token, id };
+    const deleteitem = async () => {
+      await axios
+        .post(`${backend}/users/deletethisItem`, formData)
+        .then((res) => {
+          console.log("delete the item for seller", res);
+        })
+        .catch((err) =>
+          console.log("Error Occured while deleting the item", err)
+        );
+    };
+    deleteitem();
+  };
+
   return (
     <div className="previous_item">
       <img src={imagePath} className="item_image" />
@@ -293,6 +323,13 @@ const ShowItems = (props) => {
         {" "}
         <div className="title_item">{title}</div>
         <div>Buy @ Only{price}</div>
+        <button
+          type="submit"
+          onClick={() => handleItemDelete(_id)}
+          className="delete_item"
+        >
+          Delete this item
+        </button>
       </div>
     </div>
   );
@@ -343,11 +380,14 @@ function LandingSeller(props) {
     },
   ];
 
+  const [searchedProduct, setSearchedItems] = useState([]);
   console.log("previousItems from main header", previousItems);
-
+  const setSearchData = (items) => {
+    setSearchedItems([...searchedProduct, ...items]);
+  };
   return (
     <div>
-      <Header user={user} />
+      <Header user={user} setSearchData={setSearchData} />
       <div className="square_container">
         <h1 className="today_data">Today's Data</h1>
         <div className="square_padding">
@@ -365,6 +405,38 @@ function LandingSeller(props) {
             return <ShowItems item={item} />;
           })}
       </div>
+      {searchedProduct.length > 0 && (
+        <div className="searched_product_land">
+          {searchedProduct?.length > 0 &&
+            searchedProduct.map((product) => {
+              const {
+                imagePath,
+                college,
+                phonenumber,
+                description,
+                price,
+                title,
+              } = product;
+              return (
+                <div className="display_items_container_seller_land">
+                  <img src={imagePath} className="searched_image_seller_land" />
+                  <div className="show_product_seller_land">
+                    <div>
+                      <h1>{title}</h1>
+                    </div>
+                    <div className="mr_seller_land">
+                      {description.length < 100
+                        ? description
+                        : description.substr(0, 100)}
+                    </div>
+                    <div className="mr_seller_land">{college}</div>
+                    <div className="mr_seller_land">Buy @ {price}</div>{" "}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 }

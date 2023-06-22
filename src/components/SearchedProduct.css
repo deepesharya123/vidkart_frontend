@@ -1,0 +1,42 @@
+.searched_product {
+  position: relative;
+  width: 82%;
+  margin: 133px 9% 0px;
+  border-radius: 12px;
+}
+
+.searched_image {
+  border-radius: 12px;
+  width: 200px;
+  height: 220px;
+}
+
+.display_items_container {
+  position: relative;
+  padding: 100px;
+  display: flex;
+}
+
+.show_product {
+  margin: 0px 100px 0px;
+  background-color: #c1dcdc;
+  padding: 20px;
+  border-radius: 12px;
+  width: 64%;
+}
+
+.mr {
+  margin-top: 20px;
+}
+
+.add_to_cart_search {
+  width: 245px;
+  height: 35px;
+  left: 72px;
+
+  background: black;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  margin: 20px 0px 20px;
+}

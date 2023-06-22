@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import "./DemoProducts.css";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const ShowProduct = (props) => {
   const { category, description, id, image, price, rating, title } = props;
+  const [cookie, setCookie] = useCookies();
+
+  const handleAddToCart = () => {
+    if (!cookie.auth_token) alert("Please login!");
+  };
 
   return (
     <div className="demo_product">
@@ -17,7 +23,9 @@ const ShowProduct = (props) => {
         </div>
       </div>
       <button className="add_to_cart">
-        <div className="cart_text">Add to Cart</div>
+        <div className="cart_text" onClick={handleAddToCart}>
+          Add to Cart
+        </div>
       </button>
     </div>
   );
