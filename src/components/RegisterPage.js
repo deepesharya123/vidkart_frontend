@@ -10,7 +10,6 @@ const backend = "http://localhost:8080";
 function RegisterPage(props) {
   const { user } = props;
   const navigate = useNavigate();
-  console.log("user from register page ", user);
   const [formData, SetFormData] = useState({
     [user + "name"]: "",
     [user + "email"]: "",
@@ -19,8 +18,6 @@ function RegisterPage(props) {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
     const { value, name } = e.target;
     SetFormData((prevData) => {
       return { ...prevData, [name]: value };
@@ -45,18 +42,21 @@ function RegisterPage(props) {
           });
         })
         .catch((err) => {
+          if (err.reponse === 409) alert("User is already registered");
+          else alert("Something went wrong, during registration!");
           console.log(
             "Some error occured during sending object to backedn",
             err
           );
         });
-      navigate(`/${user}/sverify/`, { state: userDetails });
+      navigate(`/${user}/${user === "seller" ? "sverify" : "cverify"}/`, {
+        state: userDetails,
+      });
     };
     saveData();
     console.log("formdata is", formData);
   };
 
-  console.log("user is ", user);
   return (
     <div className="register_container">
       <div className="register_left">

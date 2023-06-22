@@ -46,8 +46,8 @@ function LoginPage(props) {
           });
         })
         .catch((err) => {
-          alert("Plese ensure , you are using correct credentials");
           console.log("Error occures during login", err);
+          alert("Plese ensure , you are using correct credentials");
         });
     };
     login();

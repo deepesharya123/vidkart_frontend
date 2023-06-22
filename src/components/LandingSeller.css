@@ -265,11 +265,11 @@
   margin-top: 20px;
 }
 
-.add_to_cart_search_seller_land {
+.add_to_cart_customer {
   width: 245px;
   height: 35px;
   left: 72px;
-
+  padding: 20px 0px 0px 20px;
   background: black;
   border-radius: 20px;
   border: none;

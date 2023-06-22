@@ -31,7 +31,9 @@ function ActionPasswordVerify(props) {
       );
       await axios
         .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/sverify`,
+          `${backend}/${user === "seller" ? "users" : "customer"}/${
+            user === "seller" ? "sverify" : "cverify"
+          }`,
           userDetails
         )
         .then((res) => {

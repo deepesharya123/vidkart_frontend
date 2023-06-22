@@ -41,7 +41,6 @@ const Header = (props) => {
         .then((res) => {
           // setSearchedProduct(res.data.items);
           setSearchData(res.data.items);
-          console.log("response form backend is", res);
         })
         .catch((err) => console.log(err));
       setFoundSearchProduct(true);
