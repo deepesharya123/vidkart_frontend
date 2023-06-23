@@ -9,17 +9,19 @@ import image from "../images/register_image.png";
 import Toast from "./Toast";
 
 // const backend = "http://localhost:8080";
+
 const backend = "https://vidkart.onrender.com";
 
 function LoginPage(props) {
   const { user } = props;
+  console.log("user from login page", user);
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const navigate = useNavigate();
 
   const [formData, SetFormData] = useState({
-    [user + "email"]: "",
-    [user + "password"]: "",
+    [user + "Email"]: "",
+    [user + "Password"]: "",
   });
 
   const handleChange = (e) => {
@@ -33,17 +35,14 @@ function LoginPage(props) {
     e.preventDefault();
     const login = async () => {
       await axios
-        .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/login`,
-          formData
-        )
+        .post(`${backend}/admin/login`, formData)
         .then((res) => {
           if (res.status != 200) throw new Error("Try again");
           // dashboard after login
           formData.token = res.data.token;
           // setting cookie
           setCookie("auth_token", res.data.token);
-          navigate(`/${user === "seller" ? "seller" : "customer"}/landing`, {
+          navigate(`/admin/landing`, {
             state: formData,
           });
         })
@@ -59,27 +58,24 @@ function LoginPage(props) {
   return (
     <div className="register_container">
       <div className="register_left">
-        <div id="heading_register_left">
-          I am here
-          {user == "seller" ? " for selling my product" : "  to buy  product"}
-        </div>
+        <div id="heading_register_left">Welcome Admin!</div>
         <img src={image} id="image" />
       </div>
       <div className="register_right">
-        <div className="create_account">Login </div>
+        <div className="create_account">Login for Admin </div>
         <form onSubmit={handleSubmit} className="form_style">
           <input
             type="email"
-            name={`${user}email`}
-            value={formData.email}
+            name={`${user}Email`}
+            value={formData.Email}
             onChange={handleChange}
             placeholder="E-mail"
             className="email"
           />
           <input
             type="password"
-            name={`${user}password`}
-            value={formData.password}
+            name={`${user}Password`}
+            value={formData.Password}
             onChange={handleChange}
             placeholder="Password"
             className="password"
@@ -89,7 +85,7 @@ function LoginPage(props) {
         <div className="register_bottom">
           <div className="have_an_account">Don't have an account ? </div>
           <div className="account_login">
-            <NavLink to={`/${user}/register`}>Register</NavLink>
+            <NavLink to={`/admin/register`}>Register</NavLink>
           </div>
         </div>
       </div>

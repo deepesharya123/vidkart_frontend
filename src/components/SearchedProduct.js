@@ -2,13 +2,15 @@ import React from "react";
 
 import "./SearchedProduct.css";
 import { useCookies } from "react-cookie";
+import Toast from "./Toast";
 
 function SearchedProduct(props) {
   const { searchedProduct } = props;
   const [cookie, setCookie] = useCookies();
 
   const handleAddToCart = () => {
-    if (!cookie.auth_token) alert("Please login!");
+    if (!cookie.auth_token) Toast("Please login!", 400);
+    // alert("Please login!");
   };
 
   console.log("props from searchedProduct", searchedProduct);

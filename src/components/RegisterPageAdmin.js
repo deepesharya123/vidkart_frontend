@@ -14,10 +14,10 @@ function RegisterPage(props) {
   console.log("user is ", user);
   const navigate = useNavigate();
   const [formData, SetFormData] = useState({
-    [user + "name"]: "",
-    [user + "email"]: "",
-    [user + "password"]: "",
-    [user + "phonenumber"]: "",
+    [user + "Name"]: "",
+    [user + "Email"]: "",
+    [user + "Password"]: "",
+    [user + "Phonenumber"]: "",
   });
 
   const handleChange = (e) => {
@@ -30,14 +30,18 @@ function RegisterPage(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Allow only vidkart4u@gmail.com as admin
+    // if (formData?.[user + "Email"] !== "vidkart4u@gmail.com") {
+    //   console.log("formData.Email", formData?.[user + "Email"]);
+    //   alert("You are not authorized to login!");
+    //   navigate("/");
+    //   return;
+    // }
     const saveData = async () => {
-      const userDetails = { email: formData?.[user + "email"] };
+      const userDetails = { email: formData?.[user + "Email"] };
       console.log("Sending user details to verification page", userDetails);
       axios
-        .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/register`,
-          formData
-        )
+        .post(`${backend}/admin/register`, formData)
         .then((res) => {
           console.log("Sent object to backend for registration", {
             formData,
@@ -54,7 +58,7 @@ function RegisterPage(props) {
             err
           );
         });
-      navigate(`/${user}/${user === "seller" ? "sverify" : "cverify"}/`, {
+      navigate(`/admin/login/`, {
         state: userDetails,
       });
     };
@@ -80,32 +84,32 @@ function RegisterPage(props) {
         <form onSubmit={handleSubmit} className="form_style">
           <input
             type="text"
-            name={`${user}name`}
-            value={formData.name}
+            name={`${user}Name`}
+            value={formData.Name}
             onChange={handleChange}
             placeholder="Full Name"
             className="register_name"
           />
           <input
             type="email"
-            name={`${user}email`}
-            value={formData.email}
+            name={`${user}Email`}
+            value={formData.Email}
             onChange={handleChange}
             placeholder="E-mail"
             className="email"
           />
           <input
             type="password"
-            name={`${user}password`}
-            value={formData.password}
+            name={`${user}Password`}
+            value={formData.Password}
             onChange={handleChange}
             placeholder="Password"
             className="password"
           />
           <input
             type="text"
-            name={`${user}phonenumber`}
-            value={formData.phonenumber}
+            name={`${user}Phonenumber`}
+            value={formData.Phonenumber}
             onChange={handleChange}
             placeholder="Contact Number"
             className="phonenumber"

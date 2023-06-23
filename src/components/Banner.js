@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import "./Banner.css";
 import Line from "../images/Line 2.png";
@@ -8,8 +9,10 @@ import Arrow1 from "../images/arrow_1_Vector 186.png";
 import Arrow2 from "../images/arrow_2_Vector 187.png";
 import Hand from "../images/hand.png";
 import SearchedProduct from "./SearchedProduct";
+import Toast from "./Toast";
 
-const backend = "http://localhost:8080";
+// const backend = "http://localhost:8080";
+const backend = "https://vidkart.onrender.com";
 
 function Banner() {
   const [searchedProduct, setSearchedProduct] = useState([]);
@@ -26,13 +29,16 @@ function Banner() {
       await axios
         .get(`${backend}/customer/product/${search}`)
         .then((res) => {
-          setSearchedProduct(res.data.items);
+          if (res.data.items.length > 0) setSearchedProduct(res.data.items);
+          else Toast("Sorry, We don't have this item!");
           console.log("response form backend is", res);
         })
         .catch((err) => console.log(err));
     };
     if (search.length > 0) getData();
-    else alert("Please search valid product");
+    else {
+      Toast("Please search valid product", 400);
+    }
   };
 
   return (

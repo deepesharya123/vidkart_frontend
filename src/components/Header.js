@@ -6,6 +6,8 @@ import Cart from "../images/Cart.png";
 import Person from "../images/Person.png";
 import Line from "../images/Line 1.png";
 import Vector from "../images/Vector.png";
+import { useCookies } from "react-cookie";
+import Toast from "./Toast";
 
 const SellerComponent = () => {
   return (
@@ -47,7 +49,37 @@ const CustomerComponent = () => {
   );
 };
 
+const AdminComponent = () => {
+  return (
+    <div className="dropdown_head">
+      <div className="login">Admin</div>
+      <div className="dropdown_content">
+        <NavLink to="/admin/register">
+          <div href="#" className="seller">
+            Register
+          </div>
+        </NavLink>
+        <NavLink to="/admin/login">
+          <div href="#" className="customer">
+            Login
+          </div>
+        </NavLink>
+      </div>
+    </div>
+  );
+};
+
 function Header() {
+  const [cookie, setCookies, removeCookie] = useCookies("auth_token");
+
+  const handleCart = (e) => {
+    e.preventDefault();
+    console.log("clicking from cart", cookie.auth_token);
+    if (cookie.auth_token === null || !cookie.auth_token)
+      Toast("Please login!", 400);
+    // alert("Please login!");
+  };
+
   return (
     <div>
       <header>
@@ -60,8 +92,9 @@ function Header() {
             <li className="contacts">Contacts</li>
             <CustomerComponent />
             <SellerComponent />
+            <AdminComponent />
           </ul>
-          <ul className="right_nav">
+          <ul className="right_nav" onClick={handleCart}>
             <li className="cart">
               <img src={Cart}></img>
             </li>

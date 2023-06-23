@@ -8,7 +8,14 @@ import ActionSeller from "./components/ActionSeller";
 import ActionPasswordVerify from "./components/ActionPasswordVerify";
 import LandingSeller from "./components/LandingSeller";
 import LandingCustomer from "./components/LandingCustomer";
-const backend = "http://localhost:8080/";
+import ActionAdmin from "./components/ActionAdmin";
+import LoginPageAdmin from "./components/LoginPageAdmin";
+import LandingAdmin from "./components/LandingAdmin";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// const backend = "http://localhost:8080/";
+const backend = "https://vidkart.onrender.com";
 
 function App() {
   return (
@@ -25,6 +32,8 @@ function App() {
         />
         <Route path="/customer/:action" element={<ActionCustomer />} />
         <Route path="/seller/:action" element={<ActionSeller />} />
+        <Route path="/admin/:action" element={<ActionAdmin />} />
+        <Route path="/admin/login" element={<LoginPageAdmin user="admin" />} />
         <Route
           path="/seller/landing"
           element={<LandingSeller user="seller" />}
@@ -33,7 +42,20 @@ function App() {
           path="/customer/landing"
           element={<LandingCustomer user="customer" />}
         />
+        <Route path="/admin/landing" element={<LandingAdmin user="admin" />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

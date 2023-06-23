@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import "./DemoProducts.css";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import Toast from "./Toast";
 
 const ShowProduct = (props) => {
   const { category, description, id, image, price, rating, title } = props;
   const [cookie, setCookie] = useCookies();
 
   const handleAddToCart = () => {
-    if (!cookie.auth_token) alert("Please login!");
+    if (!cookie.auth_token || cookie.auth_token == null)
+      Toast("Please login!", 400);
+    // alert("Please login!");
   };
 
   return (

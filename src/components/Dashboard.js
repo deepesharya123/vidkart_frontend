@@ -6,6 +6,7 @@ import About from "./About";
 import Review from "./Review";
 import Footer from "./Footer";
 import DemoProducts from "./DemoProducts";
+import Toast from "./Toast";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <About />
       <Review />
       <Footer />
+      {/* <Toast /> */}
     </div>
   );
 }

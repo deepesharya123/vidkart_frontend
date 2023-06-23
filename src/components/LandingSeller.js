@@ -12,7 +12,10 @@ import Customer from "../images/customer.png";
 import PreviousItem from "../images/previous_item.png";
 import { useCookies } from "react-cookie";
 import SearchedProduct from "./SearchedProduct";
-const backend = "http://localhost:8080";
+import Toast from "./Toast";
+
+// const backend = "http://localhost:8080";
+const backend = "https://vidkart.onrender.com";
 
 const Header = (props) => {
   const { user, setSearchData } = props;
@@ -40,13 +43,19 @@ const Header = (props) => {
         .get(`${backend}/customer/product/${search}`)
         .then((res) => {
           // setSearchedProduct(res.data.items);
-          setSearchData(res.data.items);
+          if (res.data.items.length > 0) setSearchData(res.data.items);
+          else
+            Toast(
+              "This product is not available, please try something else",
+              400
+            );
         })
         .catch((err) => console.log(err));
       setFoundSearchProduct(true);
     };
     if (search.length > 0) getData();
-    else alert("Please search valid product");
+    else Toast("Please search valid product!", 400);
+    // alert("Please search valid product");
   };
 
   const handleLogout = (e) => {
@@ -67,8 +76,8 @@ const Header = (props) => {
           navigate("/");
         })
         .catch((err) => {
-          // alert("Error", err);
-          alert("Some error occured during logout");
+          Toast("Some error occured during logout!", 400);
+          // alert("Some error occured during logout");
           console.log("handling the error logout of seller ", err);
         });
     };
@@ -203,13 +212,18 @@ const UploadItem = (props) => {
         .post(`${backend}/users/uploadItem`, itemData, {})
         .then((res) => {
           if (res.status !== 200) throw new Error("Please try again!");
-          alert(res.data.message);
+          Toast(res.data.message, 200);
+          // alert(res.data.message);
           console.log("Message:", res.data.message);
         })
         .catch((err) => {
-          alert(
-            "Something went wrong while product uploading!,Please try again!"
+          Toast(
+            "Something went wrong while product uploading!,Please try again!",
+            400
           );
+          // alert(
+          //   "Something went wrong while product uploading!,Please try again!"
+          // );
           console.log("error while uploading item from frontend", err);
         });
     };
@@ -306,6 +320,8 @@ const ShowItems = (props) => {
       await axios
         .post(`${backend}/users/deletethisItem`, formData)
         .then((res) => {
+          Toast("Item deleted successfully", 200);
+          // alert("item deleted successfully");
           console.log("delete the item for seller", res);
         })
         .catch((err) =>

@@ -1,0 +1,5 @@
+.showing_all_items {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
