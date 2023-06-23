@@ -74,7 +74,7 @@ function Header() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    console.log("clicking from cart", cookie.auth_token);
+    // console.log("clicking from cart", cookie.auth_token);
     if (cookie.auth_token === null || !cookie.auth_token)
       Toast("Please login!", 400);
     // alert("Please login!");

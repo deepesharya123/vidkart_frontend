@@ -37,7 +37,9 @@ const Header = (props) => {
           // setSearchedProduct(res.data.items);
           setSearchData(res.data.items);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          // console.log(err)
+        });
       setFoundSearchProduct(true);
     };
     if (search.length > 0) getData();
@@ -65,24 +67,24 @@ const Header = (props) => {
         .catch((err) => {
           Toast("Some error occured during logout", 400);
           // alert("Some error occured during logout");
-          console.log("handling the error logout of seller ", err);
+          // console.log("handling the error logout of seller ", err);
         });
     };
     logout();
   };
 
   const handleShowCart = (e) => {
-    console.log("userDetails cart item of", userDetails);
+    // console.log("userDetails cart item of", userDetails);
     const getAllItems = async () => {
       await axios
         .post(`${backend}/customer/previousItem`, userDetails)
         .then((res) => {
-          console.log("Add to cart item list", res);
+          // console.log("Add to cart item list", res);
           // setShowCartItem(res.data);
           getcartItem(res.data);
         })
         .catch((err) => {
-          console.log("Erro occured during fetching cart items", err);
+          // console.log("Erro occured during fetching cart items", err);
         });
     };
     getAllItems();
@@ -161,20 +163,20 @@ function LandingCustomer(props) {
   const getcartItem = (items) => {
     setShowCartItem([...showCartItem, ...items]);
   };
-  console.log("showCartItem is", showCartItem);
+  // console.log("showCartItem is", showCartItem);
   const handleAddtoCart = (id) => {
     const data = { id, token: cookies.auth_token };
-    console.log("Item to be added", data);
+    // console.log("Item to be added", data);
     const itemsincart = async () => {
       await axios
         .post(`${backend}/customer/loggedin/addtocart`, data)
         .then((res) => {
-          console.log("add to cart for customer", res);
+          // console.log("add to cart for customer", res);
         })
         .catch((err) => {
           Toast(err.response.data.message, 400);
           // alert(err.response.data.message);
-          console.log("error during the add to cart", err);
+          // console.log("error during the add to cart", err);
         });
     };
     itemsincart();
@@ -186,14 +188,14 @@ function LandingCustomer(props) {
       await axios
         .post(`${backend}/customer/deletethisItem`, data)
         .then((res) => {
-          console.log("Item is delete and in then block", res);
+          // console.log("Item is delete and in then block", res);
         })
         .catch((err) => {
-          console.log("Error occured during deletion of item", err);
+          // console.log("Error occured during deletion of item", err);
         });
     };
     deleteItem();
-    console.log("Delete this item from cart", id);
+    // console.log("Delete this item from cart", id);
   };
 
   return (

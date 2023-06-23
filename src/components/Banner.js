@@ -24,16 +24,18 @@ function Banner() {
   };
 
   const searchProduct = async () => {
-    console.log("i am searching the product", search);
+    // console.log("i am searching the product", search);
     const getData = async () => {
       await axios
         .get(`${backend}/customer/product/${search}`)
         .then((res) => {
           if (res.data.items.length > 0) setSearchedProduct(res.data.items);
           else Toast("Sorry, We don't have this item!");
-          console.log("response form backend is", res);
+          // console.log("response form backend is", res);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          // console.log(err)
+        });
     };
     if (search.length > 0) getData();
     else {

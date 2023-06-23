@@ -14,7 +14,7 @@ const backend = "https://vidkart.onrender.com";
 
 function LoginPage(props) {
   const { user } = props;
-  console.log("user from login page", user);
+  // console.log("user from login page", user);
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function LoginPage(props) {
       await axios
         .post(`${backend}/admin/login`, formData)
         .then((res) => {
-          if (res.status != 200) throw new Error("Try again");
+          if (res.status !== 200) throw new Error("Try again");
           // dashboard after login
           formData.token = res.data.token;
           // setting cookie
@@ -47,7 +47,7 @@ function LoginPage(props) {
           });
         })
         .catch((err) => {
-          console.log("Error occures during login", err);
+          // console.log("Error occures during login", err);
           Toast("Plese ensure , you are using correct credentials", 400);
           // alert("Plese ensure , you are using correct credentials");
         });

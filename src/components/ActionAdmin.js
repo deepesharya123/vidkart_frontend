@@ -6,7 +6,7 @@ import LoginPage from "./LoginPage";
 
 function ActionAdmin() {
   const action = useParams().action;
-  console.log("From action admin", action);
+  // console.log("From action admin", action);
   return (
     <div>
       {action == "register" ? (

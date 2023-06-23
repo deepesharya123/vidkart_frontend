@@ -39,12 +39,14 @@ const Header = (props) => {
         .then((res) => {
           // setSearchedProduct(res.data.items);
           setSearchData(res.data.items);
-          console.log(
-            "res.data.items to be searched form admin",
-            res.data.items
-          );
+          // console.log(
+          //   "res.data.items to be searched form admin",
+          //   res.data.items
+          // );
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          // console.log(err)
+        });
       setFoundSearchProduct(true);
     };
     if (search.length > 0) getData();
@@ -116,20 +118,20 @@ function LandingAdmin(props) {
   const [allItem, showAllItem] = useState([]);
   const location = useLocation();
   const userData = location.state;
-  console.log("userData from landing page main compo", userData);
+  // console.log("userData from landing page main compo", userData);
 
   useEffect(() => {
     const getAllItems = async () => {
       const data = { token: userData.token, adminEmail: userData.adminEmail };
-      console.log("Get all items");
+      // console.log("Get all items");
       await axios
         .post(`${backend}/admin/allitems`, data)
         .then((res) => {
           showAllItem(res.data);
-          console.log("From all items,", res.data);
+          // console.log("From all items,", res.data);
         })
         .catch((err) => {
-          console.log("err occure", err);
+          // console.log("err occure", err);
         });
     };
     getAllItems();
@@ -143,7 +145,7 @@ function LandingAdmin(props) {
 
   const handleDeleteItem = (id) => {
     const data = { id, token: cookies.auth_token };
-    console.log("Item to be added", data);
+    // console.log("Item to be added", data);
     const itemsincart = async () => {
       await axios
         .post(`${backend}/admin/deletethisItem`, data)
@@ -151,18 +153,18 @@ function LandingAdmin(props) {
           Toast("Deleted item successfully!", 400);
           // alert("Deleted item successfully!");
           searchedProduct.filter((item) => item._id != id);
-          console.log("Delete the item for seller", res);
+          // console.log("Delete the item for seller", res);
         })
         .catch((err) => {
           Toast(err.response.data.message, 400);
           // alert(err.response.data.message);
-          console.log("error during the deleting the item", err);
+          // console.log("error during the deleting the item", err);
         });
     };
     itemsincart();
   };
 
-  console.log("allItem", allItem);
+  // console.log("allItem", allItem);
   return (
     <div>
       <Header user={user} setSearchData={setSearchData} />

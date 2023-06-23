@@ -38,7 +38,7 @@ function LoginPage(props) {
           formData
         )
         .then((res) => {
-          if (res.status != 200) throw new Error("Try again");
+          if (res.status !== 200) throw new Error("Try again");
           // dashboard after login
           formData.token = res.data.token;
           // setting cookie
@@ -48,7 +48,7 @@ function LoginPage(props) {
           });
         })
         .catch((err) => {
-          console.log("Error occures during login", err);
+          // console.log("Error occures during login", err);
           Toast("Plese ensure , you are using correct credentials", 400);
           // alert("Plese ensure , you are using correct credentials");
         });
@@ -61,9 +61,13 @@ function LoginPage(props) {
       <div className="register_left">
         <div id="heading_register_left">
           I am here
-          {user == "seller" ? " for selling my product" : "  to buy  product"}
+          {user === "seller" ? " for selling my product" : "  to buy  product"}
         </div>
-        <img src={image} id="image" />
+        <img
+          src={image}
+          id="image"
+          alt="Image is not supported in your browser."
+        />
       </div>
       <div className="register_right">
         <div className="create_account">Login </div>

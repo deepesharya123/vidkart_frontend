@@ -14,8 +14,8 @@ function ActionPasswordVerify(props) {
 
   const [token, setToken] = useState({ [user + "TokenActivation"]: "" });
   const formData = location.state;
-  console.log("user and token are", { user, token, formData });
-  console.log("location.state", location.state);
+  // console.log("user and token are", { user, token, formData });
+  // console.log("location.state", location.state);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setToken({ [name]: value });

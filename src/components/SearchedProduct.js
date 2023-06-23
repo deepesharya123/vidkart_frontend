@@ -13,7 +13,7 @@ function SearchedProduct(props) {
     // alert("Please login!");
   };
 
-  console.log("props from searchedProduct", searchedProduct);
+  // console.log("props from searchedProduct", searchedProduct);
   return (
     <div className="searched_product">
       {searchedProduct?.length > 0 &&

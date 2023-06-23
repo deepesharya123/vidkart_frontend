@@ -17,7 +17,7 @@ const toastCalled = (message, status) => {
     });
   };
   const Error = (message) => {
-    console.log("Error method");
+    // console.log("Error method");
     toast.error(message, {
       position: "top-right",
       autoClose: 5000,
@@ -34,7 +34,7 @@ const toastCalled = (message, status) => {
 };
 
 function Toast(message, status) {
-  console.log({ message, status });
+  // console.log({ message, status });
   toastCalled(message, status);
 }
 

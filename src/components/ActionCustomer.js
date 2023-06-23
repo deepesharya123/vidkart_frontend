@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 
 function ActionCustomer() {
   const action = useParams().action;
-  console.log("action", action);
+  // console.log("action", action);
   return (
     <div>
       {action == "register" ? (

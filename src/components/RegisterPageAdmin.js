@@ -11,7 +11,7 @@ const backend = "https://vidkart.onrender.com";
 
 function RegisterPage(props) {
   const { user } = props;
-  console.log("user is ", user);
+  // console.log("user is ", user);
   const navigate = useNavigate();
   const [formData, SetFormData] = useState({
     [user + "Name"]: "",
@@ -25,7 +25,7 @@ function RegisterPage(props) {
     SetFormData((prevData) => {
       return { ...prevData, [name]: value };
     });
-    console.log(formData);
+    // console.log(formData);
   };
 
   const handleSubmit = (e) => {
@@ -39,24 +39,24 @@ function RegisterPage(props) {
     // }
     const saveData = async () => {
       const userDetails = { email: formData?.[user + "Email"] };
-      console.log("Sending user details to verification page", userDetails);
+      // console.log("Sending user details to verification page", userDetails);
       axios
         .post(`${backend}/admin/register`, formData)
         .then((res) => {
-          console.log("Sent object to backend for registration", {
-            formData,
-            res,
-          });
+          // console.log("Sent object to backend for registration", {
+          //   formData,
+          //   res,
+          // });
         })
         .catch((err) => {
           if (err.reponse === 409) Toast("User is already registered", 400);
           // alert("User is already registered");
           else Toast("Something went wrong, during registration!", 400);
           // alert("Something went wrong, during registration!");
-          console.log(
-            "Some error occured during sending object to backedn",
-            err
-          );
+          // console.log(
+          //   "Some error occured during sending object to backedn",
+          //   err
+          // );
         });
       navigate(`/admin/login/`, {
         state: userDetails,
@@ -64,7 +64,7 @@ function RegisterPage(props) {
     };
 
     saveData();
-    console.log("formdata is", formData);
+    // console.log("formdata is", formData);
   };
 
   return (
@@ -73,7 +73,7 @@ function RegisterPage(props) {
         <div id="heading_register_left">
           {user === "admin"
             ? "Welcome Admin!"
-            : user == "seller"
+            : user === "seller"
             ? " I am here for selling my product"
             : "  I am here to buy  product"}
         </div>

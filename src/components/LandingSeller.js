@@ -50,7 +50,9 @@ const Header = (props) => {
               400
             );
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          // console.log(err)
+        });
       setFoundSearchProduct(true);
     };
     if (search.length > 0) getData();
@@ -78,7 +80,7 @@ const Header = (props) => {
         .catch((err) => {
           Toast("Some error occured during logout!", 400);
           // alert("Some error occured during logout");
-          console.log("handling the error logout of seller ", err);
+          // console.log("handling the error logout of seller ", err);
         });
     };
     logout();
@@ -128,16 +130,16 @@ const Squareinfo = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const handlePreviousItems = () => {
-    console.log("See Previous Items");
+    // console.log("See Previous Items");
     const getPreviousItems = async () => {
       await axios
         .post(`${backend}/users/previousItem`, { token: cookies.auth_token })
         .then((res) => {
           allPreviousItems(res.data);
-          console.log("All previous items are", res);
+          // console.log("All previous items are", res);
         })
         .catch((err) => {
-          console.log("Some error occured during fetching previous items", err);
+          // console.log("Some error occured during fetching previous items", err);
         });
     };
     getPreviousItems();
@@ -188,12 +190,12 @@ const UploadItem = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        console.log(reader.result);
+        // console.log(reader.result);
         setImage({ [name]: reader.result });
         setItemData({ ...itemData, ProductUpload: reader.result });
       };
       reader.onerror = (err) => {
-        console.log("err", err);
+        // console.log("err", err);
       };
     }
   };
@@ -204,9 +206,9 @@ const UploadItem = (props) => {
 
     const uploadItem = async () => {
       itemData.token = cookies.auth_token;
-      console.log("while uploading the item , item is here", {
-        itemData,
-      });
+      // console.log("while uploading the item , item is here", {
+      //   itemData,
+      // });
 
       await axios
         .post(`${backend}/users/uploadItem`, itemData, {})
@@ -214,7 +216,7 @@ const UploadItem = (props) => {
           if (res.status !== 200) throw new Error("Please try again!");
           Toast(res.data.message, 200);
           // alert(res.data.message);
-          console.log("Message:", res.data.message);
+          // console.log("Message:", res.data.message);
         })
         .catch((err) => {
           Toast(
@@ -224,7 +226,7 @@ const UploadItem = (props) => {
           // alert(
           //   "Something went wrong while product uploading!,Please try again!"
           // );
-          console.log("error while uploading item from frontend", err);
+          // console.log("error while uploading item from frontend", err);
         });
     };
 
@@ -322,11 +324,11 @@ const ShowItems = (props) => {
         .then((res) => {
           Toast("Item deleted successfully", 200);
           // alert("item deleted successfully");
-          console.log("delete the item for seller", res);
+          // console.log("delete the item for seller", res);
         })
-        .catch((err) =>
-          console.log("Error Occured while deleting the item", err)
-        );
+        .catch((err) => {
+          // console.log("Error Occured while deleting the item", err)
+        });
     };
     deleteitem();
   };
@@ -396,7 +398,7 @@ function LandingSeller(props) {
   ];
 
   const [searchedProduct, setSearchedItems] = useState([]);
-  console.log("previousItems from main header", previousItems);
+  // console.log("previousItems from main header", previousItems);
   const setSearchData = (items) => {
     setSearchedItems([...searchedProduct, ...items]);
   };
