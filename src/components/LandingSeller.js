@@ -66,10 +66,7 @@ const Header = (props) => {
       await axios
         .post(
           `${backend}/${user === "seller" ? "users" : "customer"}/logout`,
-          userDetails,
-          {
-            withCredentials: true,
-          }
+          userDetails
         )
         .then((res) => {
           if (res.status != 200)

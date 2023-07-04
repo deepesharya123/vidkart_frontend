@@ -58,9 +58,7 @@ const Header = (props) => {
     e.preventDefault();
     const logout = async () => {
       await axios
-        .post(`${backend}/admin/logout`, userDetails, {
-          withCredentials: true,
-        })
+        .post(`${backend}/admin/logout`, userDetails)
         .then((res) => {
           if (res.status != 200)
             throw new Error("There is some error during logging out");
