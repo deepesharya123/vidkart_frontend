@@ -8,9 +8,9 @@ import "./Login.css";
 import image from "../images/register_image.png";
 import Toast from "./Toast";
 
-// const backend = "http://localhost:8080";
+const backend = "http://localhost:8080";
 
-const backend = "https://vidkart.onrender.com";
+// const backend = "https://vidkart.onrender.com";
 
 function LoginPage(props) {
   const { user } = props;
@@ -37,7 +37,6 @@ function LoginPage(props) {
       await axios
         .post(`${backend}/admin/login`, formData)
         .then((res) => {
-          console.log("login admin page", res.data);
           if (res.status !== 200) throw new Error("Try again");
           // dashboard after login
           formData.token = res.data.token;
