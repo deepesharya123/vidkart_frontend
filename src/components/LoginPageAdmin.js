@@ -37,6 +37,7 @@ function LoginPage(props) {
       await axios
         .post(`${backend}/admin/login`, formData)
         .then((res) => {
+          console.log("login admin page", res.data);
           if (res.status !== 200) throw new Error("Try again");
           // dashboard after login
           formData.token = res.data.token;
