@@ -8,9 +8,9 @@ import "./Login.css";
 import image from "../images/register_image.png";
 import Toast from "./Toast";
 
-const backend = "http://localhost:8080";
+// const backend = "http://localhost:8080";
 
-// const backend = "https://vidkart.onrender.com";
+const backend = "https://vidkart.onrender.com";
 
 function LoginPage(props) {
   const { user } = props;
