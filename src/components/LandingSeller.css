@@ -238,7 +238,7 @@
   background-color: #c1dcdc;
 }
 .searched_product_land {
-  position: absolute;
+  position: relative;
   margin: 32px 7% 0px;
 }
 .searched_image_seller_land {

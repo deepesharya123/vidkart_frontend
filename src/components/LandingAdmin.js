@@ -209,6 +209,7 @@ function LandingAdmin(props) {
       )}
       {searchedProduct.length > 0 && (
         <div className="searched_product_land">
+          <h1>Showing searched results </h1>
           {searchedProduct?.length > 0 &&
             searchedProduct.map((product) => {
               const {
