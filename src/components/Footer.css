@@ -6,9 +6,9 @@
   background: #c1dcdc;
 }
 
-.left_footer {
-  width: 181px;
-  margin-left: 96px;
+.left_footer {    
+  width: 15%;
+  margin-left: 0%;
 }
 
 .footer_title {
@@ -38,7 +38,8 @@
   position: relative;
   padding-top: 48px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
 }
 
 .social_icons {
@@ -56,9 +57,9 @@
   margin-top: 24px;
 }
 
-.copyright {
+.copyright {    
   position: relative;
-  margin-left: 96px;
+  margin-left: 13%;
 }
 
 .right_footer {
@@ -91,4 +92,17 @@ th {
   line-height: 27px;
 
   color: #1e1e1e;
+}
+
+@media screen and ( max-width:700px){
+  .footer_cover{
+    flex-wrap: wrap;
+  }
+  .left_footer{
+    flex:50% ;
+    margin:50px;
+  }
+  .footer{
+    height: 600px;
+  }
 }

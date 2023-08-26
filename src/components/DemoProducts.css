@@ -1,24 +1,29 @@
-.demo {
-  position: relative;
+.demo { 
+    position: relative;
   margin-top: 200px;
   display: flex;
-  width: 80%;
-  margin-left: 10%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* width: 80%; */
+  margin-left: 0%;
 }
 
 .image_demo {
   width: 243px;
+  margin: 12px;
   height: 255px;
 }
 
 .demo_product {
   position: relative;
+  flex-wrap: 25%;
   width: 20%;
 }
 
 .title_demo {
   position: relative;
-  width: 100%;
+  width: 91%;
+  margin: 12px;
   height: 50px;
 }
 
@@ -31,13 +36,11 @@
 .original_price {
   height: 30px;
   left: 69px;
-
+  margin-left: 29px;
   font-family: "Aleo";
   font-style: normal;
   font-weight: 600;
   line-height: 30px;
-  /* identical to box height, or 120% */
-
   color: #0d988c;
 }
 
@@ -58,11 +61,12 @@
 .add_to_cart {
   width: 245px;
   height: 35px;
-  left: 72px;
-
+  /* left: 72px; */
   background: #c1dcdc;
   border-radius: 20px;
   border: none;
+  margin: 14px;
+  position: relative;
 }
 
 .cart_text {
@@ -75,6 +79,24 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 37px;
-
   /* color: #ffffff; */
+}
+@media screen and (max-width: 1400px) {
+ 
+  .demo_product{
+    flex: 25%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  
+  .demo_product{
+    flex: 50%;
+  }
+}
+@media screen and (max-width: 650px) {
+
+  .demo_product{
+    flex: 100%;
+  }
+ 
 }

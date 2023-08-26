@@ -46,6 +46,7 @@
   /* margin-left: 175px; */
   margin-top: 50px;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: row;
 
   gap: 24px;
@@ -80,17 +81,23 @@
 .description {
   position: relative;
   height: 54px;
-
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
   text-align: center;
-
   color: rgba(30, 30, 30, 0.5);
+  /* flex: none; */
+  /* order: 1; */
+  /* flex-grow: 0; */
+  margin-bottom: 150px;
+  margin-top: 15px;
+}
 
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+@media screen and (max-width:650px) {
+  .description{
+    display: none;
+  }
+  
 }

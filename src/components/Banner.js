@@ -48,7 +48,7 @@ function Banner() {
       <div className="banner">
         <div className="heading">Buy Your Usefull Stuff</div>
       </div>
-
+    <div className="info_search">
       <div className="info">
         <div className="left_info">
           <div className="info_left_top">5+</div>
@@ -69,13 +69,13 @@ function Banner() {
           type="text"
           value={search}
           name="search"
-          placeholder="What are you looking for?"
+          placeholder="     What are you looking for?"
         />
         <button className="search_icon" onClick={searchProduct}>
           <img src={Search} className="search_icon_2" />
         </button>
       </div>
-
+      </div>
       <img src={Arrow1} className="arrow_1" />
 
       <div className="black_area">
