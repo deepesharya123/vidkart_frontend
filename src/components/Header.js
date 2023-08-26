@@ -83,30 +83,31 @@ function Header() {
   return (
     <div>
       <header>
-        <nav className="left_nav">
-          <ul>
+        <nav className="nav">
+          <ul className="wrapp">
             <li className="title">Vidkart</li>
             <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
               <li className="home">Home</li>
             </NavLink>
             <li className="contacts">Contacts</li>
-            <CustomerComponent />
-            <SellerComponent />
-            <AdminComponent />
-          </ul>
-          <ul className="right_nav" onClick={handleCart}>
-            <li className="cart">
+            <li><CustomerComponent /></li>           
+            <li><SellerComponent />
+            </li>
+            <li><AdminComponent /></li>
+          <li className="right_nav" onClick={handleCart}>
+            <span className="cart">
               <img src={Cart}></img>
-            </li>
-            <li className="person">
+            </span>
+            <span className="person">
               <img src={Person}></img>
-            </li>
-            <li className="line">
+            </span>
+            <span className="line">
               <img src={Line}></img>
-            </li>
-            <li className="vector">
+            </span>
+            <span className="vector">
               <img src={Vector}></img>
-            </li>
+            </span>
+          </li>
           </ul>
         </nav>
       </header>

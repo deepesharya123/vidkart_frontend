@@ -1,32 +1,25 @@
-ul {
+ ul {
   position: relative;
   list-style-type: none;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  position: absolute;
-  width: 315px;
-  height: 27px;
-  left: 175px;
   top: 48px;
-}
+} 
 
 .home {
 }
 
-.right_nav {
+/* .right_nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   padding: 0px;
   gap: 48px;
   position: absolute;
   width: 216px;
   height: 24px;
-  left: 1440px;
+  left: 80%;
   top: 48px;
-}
+} */
 
 .title {
   font-family: "Aleo";
@@ -45,8 +38,10 @@ ul {
   position: relative;
   background: linear-gradient(to left, white 50%, #c1dcdc 50%) right;
   background-size: 200%;
+  display: flex;
+  justify-content: space-between;
   transition: 0.5s ease-out;
-  margin-left: 100px;
+  margin-left: 110px;
 }
 
 .home:hover,
@@ -101,3 +96,84 @@ ul {
   color: white;
   margin-left: 100px;
 }
+.nav{
+  position: absolute;
+    left: 10%;
+
+}
+.right_nav{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  flex-wrap: wrap;
+  position: relative;
+  left: 8%;
+}
+
+@media screen and (max-width:1375px) {
+  .home, .products, .contacts, .register, .login{
+margin-left: 90px;
+  }
+  
+}
+
+@media screen and (max-width:1240px) {
+  .home, .products, .contacts, .register, .login{
+margin-left: 70px;
+  }
+  
+}
+@media screen and (max-width:1140px) {
+  .home, .products, .contacts, .register, .login{
+margin-left
+: 30px;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .home, .products, .contacts, .register, .login{
+margin-left
+: 30px;
+  }
+}
+@media screen and (max-width:870px) {
+  .home, .products, .contacts, .register, .login{
+margin-left
+: 20px;
+  }
+}
+@media screen and (max-width:800px) {
+  .home, .products, .contacts, .register, .login{
+margin-left
+: 10px;
+  }
+}
+@media screen and (max-width:700px) {
+  .right_nav
+  {
+    left: 5%;
+    gap: 6px;
+  }
+}
+@media screen and (max-width:750px) {
+  .home, .products, .contacts, .register, .login{
+margin-left
+: 0px;
+  }
+  .ul{
+    position: relative;
+    left: 2px;
+  }
+ 
+  .line{
+    display: none;
+  }
+}
+@media screen and (max-width:570px) {
+  .right_nav
+  {
+    left: 0%;
+    gap: 6px;
+  }
+}
+
