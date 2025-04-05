@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Search from "../images/Search.png";
 import "./LandingCustomer.css";
@@ -8,10 +8,11 @@ import { useCookies } from "react-cookie";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Toast from "./Toast";
-// const backend = "http://localhost:8080";
-const backend = "https://vidkart.onrender.com";
+import { BackendContext } from "../App";
 
 const Header = (props) => {
+  const backend = useContext(BackendContext);
+
   const { user, setSearchData, getcartItem } = props;
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -150,6 +151,7 @@ const Advertisement = () => {
 function LandingCustomer(props) {
   const { user } = props;
   const [searchedProduct, setSearchedItems] = useState([]);
+  const backend = useContext(BackendContext);
 
   const setSearchData = (items) => {
     setSearchedItems([, ...items]);

@@ -1,10 +1,8 @@
-.demo { 
-    position: relative;
+.demo {
+  position: relative;
   margin-top: 200px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
-  /* width: 80%; */
   margin-left: 0%;
 }
 
@@ -16,8 +14,8 @@
 
 .demo_product {
   position: relative;
-  flex-wrap: 25%;
-  width: 20%;
+  /* flex-wrap: 25%; */
+  width: 80%;
 }
 
 .title_demo {
@@ -82,21 +80,17 @@
   /* color: #ffffff; */
 }
 @media screen and (max-width: 1400px) {
- 
-  .demo_product{
+  .demo_product {
     flex: 25%;
   }
 }
 @media screen and (max-width: 1200px) {
-  
-  .demo_product{
+  .demo_product {
     flex: 50%;
   }
 }
 @media screen and (max-width: 650px) {
-
-  .demo_product{
+  .demo_product {
     flex: 100%;
   }
- 
 }

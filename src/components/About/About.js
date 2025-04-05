@@ -1,9 +1,8 @@
 import React from "react";
 
+import About1 from "../../images/Group 1.png";
+import About2 from "../../images/Group 2.png";
 import "./About.css";
-import About1 from "../images/Group 1.png";
-import About2 from "../images/Group 2.png";
-import About3 from "../images/Group 3.png";
 
 const AboutDetails = (props) => {
   const { image, heading, description } = props;
