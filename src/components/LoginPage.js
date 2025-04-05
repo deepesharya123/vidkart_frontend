@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -7,13 +7,13 @@ import axios from "axios";
 import "./Login.css";
 import image from "../images/register_image.png";
 import Toast from "./Toast";
-
-// const backend = "http://localhost:8080";
-const backend = "https://vidkart.onrender.com";
+import { BackendContext } from "../App";
 
 function LoginPage(props) {
   const { user } = props;
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+
+  const backend = useContext(BackendContext);
 
   const navigate = useNavigate();
 
@@ -32,11 +32,12 @@ function LoginPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const login = async () => {
+      const url = `${backend}/${
+        user === "seller" ? "users" : "customer"
+      }/login`;
+      console.log("hit url  ", url);
       await axios
-        .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/login`,
-          formData
-        )
+        .post(url, formData)
         .then((res) => {
           if (res.status !== 200) throw new Error("Try again");
           // dashboard after login
@@ -48,9 +49,8 @@ function LoginPage(props) {
           });
         })
         .catch((err) => {
-          // console.log("Error occures during login", err);
+          console.log("Error occures during login", err);
           Toast("Plese ensure , you are using correct credentials", 400);
-          // alert("Plese ensure , you are using correct credentials");
         });
     };
     login();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -13,11 +13,11 @@ import PreviousItem from "../images/previous_item.png";
 import { useCookies } from "react-cookie";
 import SearchedProduct from "./SearchedProduct";
 import Toast from "./Toast";
-
-// const backend = "http://localhost:8080";
-const backend = "https://vidkart.onrender.com";
+import { BackendContext } from "../App";
 
 const Header = (props) => {
+  const backend = useContext(BackendContext);
+
   const { user, setSearchData } = props;
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -123,6 +123,7 @@ const Header = (props) => {
 const Squareinfo = (props) => {
   const { image, count, description, modifications, color: color } = props.item;
   const allPreviousItems = props.allPreviousItems;
+  const backend = useContext(BackendContext);
 
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
@@ -168,6 +169,7 @@ const Squareinfo = (props) => {
 
 const UploadItem = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+  const backend = useContext(BackendContext);
 
   const [itemData, setItemData] = useState({
     title: "",
@@ -199,31 +201,21 @@ const UploadItem = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("itemData from upload button click", itemData);
 
     const uploadItem = async () => {
       itemData.token = cookies.auth_token;
-      // console.log("while uploading the item , item is here", {
-      //   itemData,
-      // });
 
       await axios
         .post(`${backend}/users/uploadItem`, itemData, {})
         .then((res) => {
           if (res.status !== 200) throw new Error("Please try again!");
           Toast(res.data.message, 200);
-          // alert(res.data.message);
-          // console.log("Message:", res.data.message);
         })
         .catch((err) => {
           Toast(
             "Something went wrong while product uploading!,Please try again!",
             400
           );
-          // alert(
-          //   "Something went wrong while product uploading!,Please try again!"
-          // );
-          // console.log("error while uploading item from frontend", err);
         });
     };
 
@@ -267,7 +259,7 @@ const UploadItem = (props) => {
             required
             name="description"
             value={itemData.description}
-            placeholder="Enter description, at keast 50 letters"
+            placeholder="Enter description, at least 50 letters"
             className="common_item_input"
           />
           <input
@@ -308,6 +300,7 @@ const ShowItems = (props) => {
     title,
     _id,
   } = props.item;
+  const backend = useContext(BackendContext);
 
   const [cookie, setCookie] = useCookies();
 

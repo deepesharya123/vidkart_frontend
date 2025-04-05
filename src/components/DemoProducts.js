@@ -54,17 +54,19 @@ function DemoProducts() {
   }, []);
 
   return (
-    <div className="demo">
-      {data.length > 0 &&
+    <div className="demo" display="flex">
+      {data.length &&
         data.map((item) => (
-          <ShowProduct
-            category={item.category}
-            description={item.description}
-            id={item.id}
-            image={item.image}
-            price={item.price}
-            title={item.title}
-          />
+          <div key={item.id}>
+            <ShowProduct
+              category={item.category}
+              description={item.description}
+              id={item.id}
+              image={item.image}
+              price={item.price}
+              title={item.title}
+            />
+          </div>
         ))}
     </div>
   );

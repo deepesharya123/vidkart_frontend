@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 
 import "./Register.css";
 import image from "../images/register_image.png";
 import Toast from "./Toast";
-
-// const backend = "http://localhost:8080";
-const backend = "https://vidkart.onrender.com";
+import { BackendContext } from "../App";
 
 function RegisterPage(props) {
+  const backend = useContext(BackendContext);
   const { user } = props;
-  // console.log("user is ", user);
   const navigate = useNavigate();
   const [formData, SetFormData] = useState({
     [user + "name"]: "",
