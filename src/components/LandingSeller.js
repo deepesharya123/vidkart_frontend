@@ -62,22 +62,16 @@ const Header = (props) => {
   const handleLogout = (e) => {
     e.preventDefault();
     const logout = async () => {
-      console.log("userDetails ", { userDetails, user });
       await axios
-        .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/logout`,
-          userDetails
-        )
+        .post(`${backend}/${"users"}/logout`, userDetails)
         .then((res) => {
-          if (res.status != 200)
-            throw new Error("There is some error during logging out");
+          if (res.status != 200) throw new Error("Something went wrong");
           removeCookie("auth_token");
           navigate("/");
           localStorage.clear();
         })
         .catch((err) => {
           Toast("Some error occured during logout!", 400);
-          // alert("Some error occured during logout");
           console.log("handling the error logout of seller ", err);
         });
     };
