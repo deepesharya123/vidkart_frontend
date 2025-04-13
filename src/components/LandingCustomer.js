@@ -61,6 +61,7 @@ const Header = (props) => {
             throw new Error("There is some error during logging out");
           removeCookie("auth_token");
           navigate("/");
+          localStorage.clear();
         })
         .catch((err) => {
           Toast("Some error occured during logout", 400);

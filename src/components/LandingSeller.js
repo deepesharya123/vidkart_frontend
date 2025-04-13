@@ -1,36 +1,35 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import "./LandingSeller.css";
 
-import Search from "../images/Search.png";
-import Sales from "../images/sales.png";
-import Order from "../images/order.png";
-import Sold from "../images/sold.png";
-import Customer from "../images/customer.png";
-import PreviousItem from "../images/previous_item.png";
 import { useCookies } from "react-cookie";
-import SearchedProduct from "./SearchedProduct";
-import Toast from "./Toast";
 import { BackendContext } from "../App";
+import Search from "../images/Search.png";
+import Customer from "../images/customer.png";
+import Order from "../images/order.png";
+import PreviousItem from "../images/previous_item.png";
+import Sales from "../images/sales.png";
+import Sold from "../images/sold.png";
+import AuthContext from "./AuthContext/AuthContext";
+import Toast from "./Toast";
 
 const Header = (props) => {
   const backend = useContext(BackendContext);
-
   const { user, setSearchData } = props;
+
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
   const location = useLocation();
+  console.log(location);
   const userData = location.state;
-  const [userDetails, setUserDetails] = useState(userData);
+  // const [userDetails, setUserDetails] = useState(userData);
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+  console.log("userDetails ", userDetails);
   const navigate = useNavigate();
   const [foundSearchProduct, setFoundSearchProduct] = useState(false);
   const [searchedProduct, setSearchedProduct] = useState([]);
-
-  useEffect(() => {
-    setUserDetails(!userDetails ? userData : userDetails);
-  }, []);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -63,6 +62,7 @@ const Header = (props) => {
   const handleLogout = (e) => {
     e.preventDefault();
     const logout = async () => {
+      console.log("userDetails ", { userDetails, user });
       await axios
         .post(
           `${backend}/${user === "seller" ? "users" : "customer"}/logout`,
@@ -73,11 +73,12 @@ const Header = (props) => {
             throw new Error("There is some error during logging out");
           removeCookie("auth_token");
           navigate("/");
+          localStorage.clear();
         })
         .catch((err) => {
           Toast("Some error occured during logout!", 400);
           // alert("Some error occured during logout");
-          // console.log("handling the error logout of seller ", err);
+          console.log("handling the error logout of seller ", err);
         });
     };
     logout();
@@ -109,11 +110,7 @@ const Header = (props) => {
         </form>
         <div className="seller_email">
           Hi,
-          {userDetails.selleremail.slice(
-            0,
-            userDetails.selleremail.indexOf("@")
-          )}
-          !
+          {userDetails?.sellername || userDetails?.selleremail}!
         </div>
       </div>
     </div>
@@ -343,7 +340,7 @@ const ShowItems = (props) => {
 };
 
 function LandingSeller(props) {
-  const { user } = props;
+  const { user } = useContext(AuthContext);
 
   const [previousItems, setPreviousItems] = useState([]);
   const allPreviousItems = (allitems) => {

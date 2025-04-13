@@ -1,12 +1,11 @@
 import React from "react";
 
-import Header from "./Header";
-import Banner from "./Banner";
 import About from "./About/About";
-import Review from "./Review";
-import Footer from "./Footer";
+import Banner from "./Banner";
 import DemoProducts from "./DemoProducts";
-import Toast from "./Toast";
+import Footer from "./Footer";
+import Header from "./Header/Header";
+import Review from "./Review";
 
 function Home() {
   return (

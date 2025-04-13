@@ -62,6 +62,7 @@ const Header = (props) => {
           if (res.status != 200)
             throw new Error("There is some error during logging out");
           removeCookie("auth_token");
+          localStorage.clear();
           navigate("/");
         })
         .catch((err) => {
