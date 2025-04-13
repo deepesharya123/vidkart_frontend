@@ -36,7 +36,6 @@ const CommonMenu = (props) => {
           <MenuItem
             key={user}
             onClick={(e) => {
-              console.log({ action, user });
               navigate(`/${user}/${action}`);
             }}
           >

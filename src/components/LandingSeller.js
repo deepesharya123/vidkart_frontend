@@ -22,14 +22,10 @@ const Header = (props) => {
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
   const location = useLocation();
-  console.log(location);
   const userData = location.state;
-  // const [userDetails, setUserDetails] = useState(userData);
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-  console.log("userDetails ", userDetails);
   const navigate = useNavigate();
   const [foundSearchProduct, setFoundSearchProduct] = useState(false);
-  const [searchedProduct, setSearchedProduct] = useState([]);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -56,7 +52,6 @@ const Header = (props) => {
     };
     if (search.length > 0) getData();
     else Toast("Please search valid product!", 400);
-    // alert("Please search valid product");
   };
 
   const handleLogout = (e) => {
@@ -119,16 +114,14 @@ const Squareinfo = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const handlePreviousItems = () => {
-    // console.log("See Previous Items");
     const getPreviousItems = async () => {
       await axios
         .post(`${backend}/users/previousItem`, { token: cookies.auth_token })
         .then((res) => {
           allPreviousItems(res.data);
-          // console.log("All previous items are", res);
         })
         .catch((err) => {
-          // console.log("Some error occured during fetching previous items", err);
+          console.log("Some error occured during fetching previous items", err);
         });
     };
     getPreviousItems();
@@ -180,12 +173,11 @@ const UploadItem = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        // console.log(reader.result);
         setImage({ [name]: reader.result });
         setItemData({ ...itemData, ProductUpload: reader.result });
       };
       reader.onerror = (err) => {
-        // console.log("err", err);
+        console.log("err", err);
       };
     }
   };
@@ -304,8 +296,6 @@ const ShowItems = (props) => {
         .post(`${backend}/users/deletethisItem`, formData)
         .then((res) => {
           Toast("Item deleted successfully", 200);
-          // alert("item deleted successfully");
-          // console.log("delete the item for seller", res);
         })
         .catch((err) => {
           // console.log("Error Occured while deleting the item", err)
@@ -379,7 +369,6 @@ function LandingSeller(props) {
   ];
 
   const [searchedProduct, setSearchedItems] = useState([]);
-  // console.log("previousItems from main header", previousItems);
   const setSearchData = (items) => {
     setSearchedItems([...searchedProduct, ...items]);
   };

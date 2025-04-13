@@ -7,7 +7,6 @@ const ProtectedRoute = ({ component: Component, ...otherProps }) => {
   const { isLoading } = userContext;
 
   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  console.log("isLoggedIn ", isLoggedIn);
 
   return (
     <Box>

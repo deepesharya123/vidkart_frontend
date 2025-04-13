@@ -24,9 +24,6 @@ const backend = "http://localhost:8000";
 export const BackendContext = createContext();
 
 function App() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  console.log("isLoggedIn ", isLoggedIn);
-
   return (
     <div className="app">
       <ChakraProvider>
