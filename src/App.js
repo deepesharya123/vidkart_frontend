@@ -18,8 +18,8 @@ import { createContext } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AuthProvider from "./components/AuthContext/AuthProvider";
 
-const backend = "http://localhost:8000";
-// const backend = "https://vidkart.onrender.com";
+// const backend = "http://localhost:8000";
+const backend = "https://vidkart.onrender.com";
 
 export const BackendContext = createContext();
 
