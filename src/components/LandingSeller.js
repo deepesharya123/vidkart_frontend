@@ -1,36 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "./LandingSeller.css";
 
-import Search from "../images/Search.png";
-import Sales from "../images/sales.png";
-import Order from "../images/order.png";
-import Sold from "../images/sold.png";
-import Customer from "../images/customer.png";
-import PreviousItem from "../images/previous_item.png";
 import { useCookies } from "react-cookie";
-import SearchedProduct from "./SearchedProduct";
+import { BackendContext } from "../App";
+import Search from "../images/Search.png";
+import Customer from "../images/customer.png";
+import Order from "../images/order.png";
+import PreviousItem from "../images/previous_item.png";
+import Sales from "../images/sales.png";
+import Sold from "../images/sold.png";
+import AuthContext from "./AuthContext/AuthContext";
 import Toast from "./Toast";
 
-// const backend = "http://localhost:8080";
-const backend = "https://vidkart.onrender.com";
-
 const Header = (props) => {
+  const backend = useContext(BackendContext);
   const { user, setSearchData } = props;
+
   const [search, SetSearch] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
   const location = useLocation();
   const userData = location.state;
-  const [userDetails, setUserDetails] = useState(userData);
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const navigate = useNavigate();
   const [foundSearchProduct, setFoundSearchProduct] = useState(false);
-  const [searchedProduct, setSearchedProduct] = useState([]);
-
-  useEffect(() => {
-    setUserDetails(!userDetails ? userData : userDetails);
-  }, []);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -57,27 +52,22 @@ const Header = (props) => {
     };
     if (search.length > 0) getData();
     else Toast("Please search valid product!", 400);
-    // alert("Please search valid product");
   };
 
   const handleLogout = (e) => {
     e.preventDefault();
     const logout = async () => {
       await axios
-        .post(
-          `${backend}/${user === "seller" ? "users" : "customer"}/logout`,
-          userDetails
-        )
+        .post(`${backend}/${"users"}/logout`, userDetails)
         .then((res) => {
-          if (res.status != 200)
-            throw new Error("There is some error during logging out");
+          if (res.status != 200) throw new Error("Something went wrong");
           removeCookie("auth_token");
           navigate("/");
+          localStorage.clear();
         })
         .catch((err) => {
           Toast("Some error occured during logout!", 400);
-          // alert("Some error occured during logout");
-          // console.log("handling the error logout of seller ", err);
+          console.log("handling the error logout of seller ", err);
         });
     };
     logout();
@@ -109,11 +99,7 @@ const Header = (props) => {
         </form>
         <div className="seller_email">
           Hi,
-          {userDetails.selleremail.slice(
-            0,
-            userDetails.selleremail.indexOf("@")
-          )}
-          !
+          {userDetails?.sellername || userDetails?.selleremail}!
         </div>
       </div>
     </div>
@@ -123,20 +109,19 @@ const Header = (props) => {
 const Squareinfo = (props) => {
   const { image, count, description, modifications, color: color } = props.item;
   const allPreviousItems = props.allPreviousItems;
+  const backend = useContext(BackendContext);
 
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const handlePreviousItems = () => {
-    // console.log("See Previous Items");
     const getPreviousItems = async () => {
       await axios
         .post(`${backend}/users/previousItem`, { token: cookies.auth_token })
         .then((res) => {
           allPreviousItems(res.data);
-          // console.log("All previous items are", res);
         })
         .catch((err) => {
-          // console.log("Some error occured during fetching previous items", err);
+          console.log("Some error occured during fetching previous items", err);
         });
     };
     getPreviousItems();
@@ -168,6 +153,7 @@ const Squareinfo = (props) => {
 
 const UploadItem = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+  const backend = useContext(BackendContext);
 
   const [itemData, setItemData] = useState({
     title: "",
@@ -187,43 +173,32 @@ const UploadItem = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        // console.log(reader.result);
         setImage({ [name]: reader.result });
         setItemData({ ...itemData, ProductUpload: reader.result });
       };
       reader.onerror = (err) => {
-        // console.log("err", err);
+        console.log("err", err);
       };
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("itemData from upload button click", itemData);
 
     const uploadItem = async () => {
       itemData.token = cookies.auth_token;
-      // console.log("while uploading the item , item is here", {
-      //   itemData,
-      // });
 
       await axios
         .post(`${backend}/users/uploadItem`, itemData, {})
         .then((res) => {
           if (res.status !== 200) throw new Error("Please try again!");
           Toast(res.data.message, 200);
-          // alert(res.data.message);
-          // console.log("Message:", res.data.message);
         })
         .catch((err) => {
           Toast(
             "Something went wrong while product uploading!,Please try again!",
             400
           );
-          // alert(
-          //   "Something went wrong while product uploading!,Please try again!"
-          // );
-          // console.log("error while uploading item from frontend", err);
         });
     };
 
@@ -267,7 +242,7 @@ const UploadItem = (props) => {
             required
             name="description"
             value={itemData.description}
-            placeholder="Enter description, at keast 50 letters"
+            placeholder="Enter description, at least 50 letters"
             className="common_item_input"
           />
           <input
@@ -308,6 +283,7 @@ const ShowItems = (props) => {
     title,
     _id,
   } = props.item;
+  const backend = useContext(BackendContext);
 
   const [cookie, setCookie] = useCookies();
 
@@ -320,8 +296,6 @@ const ShowItems = (props) => {
         .post(`${backend}/users/deletethisItem`, formData)
         .then((res) => {
           Toast("Item deleted successfully", 200);
-          // alert("item deleted successfully");
-          // console.log("delete the item for seller", res);
         })
         .catch((err) => {
           // console.log("Error Occured while deleting the item", err)
@@ -350,7 +324,7 @@ const ShowItems = (props) => {
 };
 
 function LandingSeller(props) {
-  const { user } = props;
+  const { user } = useContext(AuthContext);
 
   const [previousItems, setPreviousItems] = useState([]);
   const allPreviousItems = (allitems) => {
@@ -395,7 +369,6 @@ function LandingSeller(props) {
   ];
 
   const [searchedProduct, setSearchedItems] = useState([]);
-  // console.log("previousItems from main header", previousItems);
   const setSearchData = (items) => {
     setSearchedItems([...searchedProduct, ...items]);
   };

@@ -1,12 +1,11 @@
 import React from "react";
 
-import Header from "./Header";
+import About from "./About/About";
 import Banner from "./Banner";
-import About from "./About";
-import Review from "./Review";
-import Footer from "./Footer";
 import DemoProducts from "./DemoProducts";
-import Toast from "./Toast";
+import Footer from "./Footer";
+import Header from "./Header/Header";
+import Review from "./Review";
 
 function Home() {
   return (
@@ -17,7 +16,6 @@ function Home() {
       <About />
       <Review />
       <Footer />
-      {/* <Toast /> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -7,13 +7,12 @@ import axios from "axios";
 import "./Login.css";
 import image from "../images/register_image.png";
 import Toast from "./Toast";
-
-// const backend = "http://localhost:8080";
-
-const backend = "https://vidkart.onrender.com";
+import { BackendContext } from "../App";
 
 function LoginPage(props) {
   const { user } = props;
+  const backend = useContext(BackendContext);
+
   // console.log("user from login page", user);
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 

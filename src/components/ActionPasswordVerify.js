@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import "./ActionPasswordVerify.css";
 import image from "../images/register_image.png";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Toast from "./Toast";
-const backend = "https://vidkart.onrender.com/";
+import { BackendContext } from "../App";
 
 function ActionPasswordVerify(props) {
   const { user } = props;
   const location = useLocation();
   const navigate = useNavigate();
+  const backend = useContext(BackendContext);
 
   const [token, setToken] = useState({ [user + "TokenActivation"]: "" });
   const formData = location.state;
-  // console.log("user and token are", { user, token, formData });
-  // console.log("location.state", location.state);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setToken({ [name]: value });
@@ -25,10 +24,7 @@ function ActionPasswordVerify(props) {
     e.preventDefault();
     const getVerified = async () => {
       const userDetails = { [user + "email"]: formData.email, token };
-      // console.log(
-      //   "Sending userdetils from verification frontend to backend of verification",
-      //   userDetails
-      // );
+
       await axios
         .post(
           `${backend}/${user === "seller" ? "users" : "customer"}/${
@@ -38,16 +34,12 @@ function ActionPasswordVerify(props) {
         )
         .then((res) => {
           navigate("/");
-          // console.log("Sent request to backend for seller verification", res);
         })
         .catch((err) => {
           Toast("Please check your credentials", 400);
-          // alert("Please check your credentials");
-          // console.log("Some error occured during seller verification", err);
         });
     };
     getVerified();
-    // console.log("From handlesubmit");
   };
 
   return (
